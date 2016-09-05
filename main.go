@@ -25,7 +25,7 @@ func main() {
 	http.HandleFunc("/sunqixiang/", proxysunqixiang)
 	http.HandleFunc("/youwei/", proxyyouwei)
 	http.HandleFunc("/jilingyan/", proxyjilingyan)
-	fmt.Println(http.ListenAndServe("172.17.1.172:80", nil))
+	fmt.Println(http.ListenAndServe("139.196.225.38:80", nil))
 }
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	//w.WriteHeader(404)
