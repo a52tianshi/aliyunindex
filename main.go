@@ -16,7 +16,7 @@ func init() {
 	fmt.Println("start!")
 	MainFilePath, _ := filepath.Abs(os.Args[0])
 	MainDirPath = filepath.Dir(MainFilePath)
-	HtmlPath = MainDirPath + "/static/html/"
+	HtmlPath = MainDirPath + "/static/html"
 }
 func main() {
 	fmt.Println("MainDir", MainDirPath)
@@ -30,6 +30,11 @@ func main() {
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	//w.WriteHeader(404)
 	bufs, _ := ioutil.ReadFile(HtmlPath + "index.html")
+	bufs2, _ := ioutil.ReadFile(HtmlPath + r.URL.Path)
+	if len(bufs2) > 0 {
+		w.Write(bufs2)
+		return
+	}
 	w.Write(bufs)
 }
 func proxychenquan(w http.ResponseWriter, r *http.Request) {
