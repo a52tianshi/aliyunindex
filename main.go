@@ -28,8 +28,9 @@ func main() {
 	fmt.Println(http.ListenAndServe("139.196.225.38:80", nil))
 }
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	//w.WriteHeader(404)
-	bufs, _ := ioutil.ReadFile(HtmlPath + "index.html")
+	w.Header().Add("Content-Type", "text/html")
+	w.WriteHeader(200)
+	bufs, _ := ioutil.ReadFile(HtmlPath + "/index.html")
 	bufs2, _ := ioutil.ReadFile(HtmlPath + r.URL.Path)
 	if len(bufs2) > 0 {
 		w.Write(bufs2)
